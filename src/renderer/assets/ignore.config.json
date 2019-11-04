@@ -1,0 +1,83 @@
+[
+    {
+        "name": ".DS_Store"
+    },
+    {
+        "name": "node_modules"
+    },
+    {
+        "name": ".env.local"
+    },
+    {
+        "name": ".env.*.local"
+    },
+    {
+        "name": "npm-debug.log*"
+    },
+    {
+        "name": "yarn-debug.log*"
+    },
+    {
+        "name": "yarn-error.log*"
+    },
+    {
+        "name": ".idea"
+    },
+    {
+        "name": ".vscode"
+    },
+    {
+        "name": ".suo"
+    },
+    {
+        "name": ".ntvs*"
+    },
+    {
+        "name": ".njsproj"
+    },
+    {
+        "name": ".sln"
+    },
+    {
+        "name": ".eif"
+    },
+    {
+        "name": ".exe"
+    },
+    {
+        "name": "zip"
+    },
+    {
+        "name": "rar"
+    },
+    {
+        "name": "ai"
+    },
+    {
+        "name": "mov"
+    },
+    {
+        "name": "jpg"
+    },
+    {
+        "name": "doc"
+    },
+    {
+        "name": "bin"
+    },
+    {
+        "name": "md5"
+    },
+    {
+        "name": "msi"
+    },
+    {
+        "name": "mp4"
+    },
+    {
+        "name": "mp3"
+    },
+    {
+        "name": "rmvb"
+    }
+]
