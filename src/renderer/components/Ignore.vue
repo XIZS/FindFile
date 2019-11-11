@@ -15,7 +15,8 @@
             @leave="ignores_leave"
         >
             <div v-show="show_ignore_list" class="ignores">
-                <transition-group name="ignore-item" tag="ul">
+                <!-- <transition-group name="ignore-item" tag="ul"> -->
+                <ul>
                     <li v-for="(ignore,i) in ignore_list" :key="ignore.name">
                         <span>{{ignore.name}}</span>
                         <i class="iconfont icon-icon--" @click="remove_ingore(i)"></i>
@@ -31,7 +32,8 @@
                             <i class="iconfont icon-jia"></i>
                         </div>
                     </li>
-                </transition-group>
+                </ul>
+                <!-- </transition-group> -->
             </div>
         </transition>
     </div>
@@ -50,8 +52,7 @@ function remove_item(array, index) {
 
 export default {
     created() {
-
-		//exercise
+        //exercise
         this.update_data = fu.link_file("ignore.config.json", data => {
             this.$store.commit("set_ignore_list", data);
             this.ignore_list = data;
@@ -91,16 +92,16 @@ export default {
             this.show_add_input = false;
         },
         ignores_before_enter(el) {
-			el.offsetWidth;
+            el.offsetWidth;
             el.style.maxHeight = "0px";
         },
         ignores_enter(el) {
-			el.offsetWidth;
-		
-            el.style.maxHeight = "500px";
+            let height = el.parentElement.offsetHeight - 30;
+            el.style.maxHeight = height + "px";
             el.style.transition = "all 0.5s ease";
         },
         ignores_leave(el) {
+			
             el.style.maxHeight = "0px";
         }
     }
@@ -112,9 +113,11 @@ export default {
     color: white;
     display: flex;
     flex-direction: column;
-
+    height: 100%;
     .title {
+		user-select: none; 
         display: flex;
+		cursor:pointer;
         i {
             display: block;
             transition: all 0.5s ease;
@@ -127,6 +130,7 @@ export default {
         line-height: 30px;
     }
     .title.active {
+        height: 30px;
         i {
             transform: rotate(90deg);
         }
@@ -134,6 +138,7 @@ export default {
     ul {
         position: relative;
         background: #558fff;
+
     }
     ul > li {
         display: flex;
@@ -141,8 +146,8 @@ export default {
         align-items: center;
         height: 18px;
         width: 100%;
-        cursor: pointer;
-
+		cursor:pointer;
+        padding-right: 10px;
         transition: all 0.5s ease;
 
         &:hover {
@@ -153,7 +158,7 @@ export default {
             display: block;
         }
         span {
-            user-select: none;
+			user-select: none; 
             transition: all 0.5s ease;
             font-size: 12px;
             padding-left: 20px;
@@ -171,7 +176,7 @@ export default {
         &.control {
             &:hover {
             }
-
+            padding-right: 0;
             display: flex;
             flex-direction: column;
             height: auto;
@@ -203,31 +208,59 @@ export default {
     }
 }
 
-.ignore-item-leave-to {
-    transform: translateY(-100%);
-    opacity: 0;
-}
-.ignore-item-enter {
-    transform: translateY(-100%);
-    opacity: 0;
-}
-.ignore-item-enter-active,
-.ignore-item-leave-active {
-    transition: all 0.5s ease;
-}
-.ignore-item-move {
-    transition: all 0.5s ease;
-}
-.ignore-item-leave-active {
-    position: absolute;
-}
+// .ignore-item-leave-to {
+//     transform: translateY(-100%);
+//     opacity: 0;
+// }
+// .ignore-item-enter {
+//     transform: translateY(100%);
+//     opacity: 0;
+// }
+// .ignore-item-enter-active,
+// .ignore-item-leave-active {
+//     transition: all 0.5s ease;
+// }
+// .ignore-item-move {
+//     transition: all 0.5s ease;
+// }
+// .ignore-item-leave-active {
+//     position: absolute;
+// }
 
-.ignore-enter-active,
-.ignore-leave-active {
-    transition: all 0.5s ease;
-}
+// .ignore-enter-active,
+// .ignore-leave-active {
+//     transition: all 0.5s ease;
+// }
 
 .ignores {
-    overflow: hidden;
+    overflow-y: overlay;
+
+    &:hover::-webkit-scrollbar-thumb {
+        background: #46a3ff;
+    }
+
+    &::-webkit-scrollbar {
+        /*滚动条整体样式*/
+
+        width: 10px;
+        /*高宽分别对应横竖滚动条的尺寸*/
+
+        height: 1px;
+    }
+    &::-webkit-scrollbar-thumb {
+        /*滚动条里面小方块*/
+        // -webkit-box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.2);
+        width: 5px;
+        background: #558fff;
+    }
+    &::-webkit-scrollbar-track-piece {
+    }
+
+    &::-webkit-scrollbar-track {
+        /*滚动条里面轨道*/
+        width: 1px;
+        height: 1px;
+        background: #558fff;
+    }
 }
 </style>

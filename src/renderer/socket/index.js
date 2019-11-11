@@ -7,7 +7,7 @@ export default {
 		return new Promise((resolve, reject) => {
 			ipcRenderer.send('open-file-dialog')
 			ipcRenderer.on('select-folder', (event, path) => {
-				resolve(path);
+				resolve(path[0]);
 			})
 		})
 	},
